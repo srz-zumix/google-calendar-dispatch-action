@@ -2,11 +2,14 @@
 
 ## Overview
 
-A GitHub Action that retrieves incomplete events/tasks from Google Calendar around the current time, and sends a repository dispatch for each event/task whose scheduled time has passed.
+A GitHub Action that retrieves incomplete events/tasks from Google Calendar
+around the current time, and sends a repository dispatch for each event/task
+whose scheduled time has passed.
 
 ## Trigger
 
-- Designed as a generic GitHub Action that can be invoked from any workflow event (cron, workflow_dispatch, push, etc.)
+- Designed as a generic GitHub Action that can be invoked from any workflow
+  event (cron, workflow_dispatch, push, etc.)
 - The action does not depend on any specific trigger type
 
 ## Time Range
@@ -14,13 +17,17 @@ A GitHub Action that retrieves incomplete events/tasks from Google Calendar arou
 ### Event Retrieval Range
 
 - **Past range**: Configurable via `time_range` parameter (in minutes)
-- **Future buffer**: Internal fixed value (~10 minutes) to handle processing delays
-- **Retrieval window**: `(current_time - time_range)` to `(current_time + buffer)`
+- **Future buffer**: Internal fixed value (~10 minutes) to handle processing
+  delays
+- **Retrieval window**: `(current_time - time_range)` to
+  `(current_time + buffer)`
 
 ### Dispatch Target Criteria
 
-- Only events/tasks where `start_time < current_time` at the moment of evaluation are dispatched
-- This ensures the action only processes events that have actually passed their start time
+- Only events/tasks where `start_time < current_time` at the moment of
+  evaluation are dispatched
+- This ensures the action only processes events that have actually passed their
+  start time
 
 ## Target Sources
 
@@ -46,20 +53,20 @@ A GitHub Action that retrieves incomplete events/tasks from Google Calendar arou
 
 ### Required Parameters
 
-| Parameter | Description |
-|-----------|-------------|
+| Parameter      | Description                                                  |
+| -------------- | ------------------------------------------------------------ |
 | `github-token` | GitHub token for repository dispatch (requires `repo` scope) |
 
 ### Optional Parameters
 
-| Parameter | Default | Description |
-| ----------- | --------- | ------------- |
-| `time-range` | TBD | Time range in minutes to look back for events |
-| `calendar-ids` | - | Comma-separated list of Google Calendar IDs |
-| `task-list-ids` | - | Comma-separated list of Google Tasks list IDs |
-| `google-credentials` | - | Google credentials JSON. Falls back to `GOOGLE_APPLICATION_CREDENTIALS` environment variable if not specified |
-| `repository` | `${{ github.repository }}` | Target repository for dispatch (format: `owner/repo`) |
-| `event-type` | TBD | Default event type for repository dispatch |
+| Parameter            | Default                    | Description                                                                                                   |
+| -------------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `time-range`         | TBD                        | Time range in minutes to look back for events                                                                 |
+| `calendar-ids`       | -                          | Comma-separated list of Google Calendar IDs                                                                   |
+| `task-list-ids`      | -                          | Comma-separated list of Google Tasks list IDs                                                                 |
+| `google-credentials` | -                          | Google credentials JSON. Falls back to `GOOGLE_APPLICATION_CREDENTIALS` environment variable if not specified |
+| `repository`         | `${{ github.repository }}` | Target repository for dispatch (format: `owner/repo`)                                                         |
+| `event-type`         | TBD                        | Default event type for repository dispatch                                                                    |
 
 ## Authentication
 
@@ -67,7 +74,8 @@ A GitHub Action that retrieves incomplete events/tasks from Google Calendar arou
 
 1. If `google-credentials` input is provided, use it directly
 2. Otherwise, use `GOOGLE_APPLICATION_CREDENTIALS` environment variable
-3. Designed to work with [google-github-actions/auth](https://github.com/google-github-actions/auth)
+3. Designed to work with
+   [google-github-actions/auth](https://github.com/google-github-actions/auth)
 
 ### GitHub API
 
@@ -75,10 +83,12 @@ A GitHub Action that retrieves incomplete events/tasks from Google Calendar arou
 
 ## Event Type Resolution
 
-Event type for repository dispatch is determined in the following priority order:
+Event type for repository dispatch is determined in the following priority
+order:
 
 1. **Title**: Extract from event/task title using format `{event_type: xxx}`
-2. **Description**: Extract from description/notes using format `{event_type: xxx}`
+2. **Description**: Extract from description/notes using format
+   `{event_type: xxx}`
 3. **Default**: Use `event_type` input parameter
 
 ### Format
@@ -138,16 +148,16 @@ JSON data extracted from description/notes using code block format:
 4. **Filter** incomplete events/tasks:
    - Events: description does not contain run URL marker
    - Tasks: status is not completed
-5. **For each** filtered event/task where `start_time < current_time`:
-   a. Extract event type from title/description or use default
-   b. Extract custom JSON payload from description
-   c. Send repository dispatch
-   d. Append run URL to event description / task notes
+5. **For each** filtered event/task where `start_time < current_time`: a.
+   Extract event type from title/description or use default b. Extract custom
+   JSON payload from description c. Send repository dispatch d. Append run URL
+   to event description / task notes
 6. **Report** summary of processed items
 
 ## Completion Marker Format
 
-After successful dispatch, the following is appended to the event description or task notes:
+After successful dispatch, the following is appended to the event description or
+task notes:
 
 ```text
 --- google-calendar-dispatch-action
@@ -168,8 +178,8 @@ This marker serves two purposes:
 
 ## Outputs
 
-| Output | Description |
-| -------- | ------------- |
-| `dispatched-count` | Number of successfully dispatched events/tasks |
-| `skipped-count` | Number of skipped events/tasks (already completed or errors) |
-| `error-count` | Number of events/tasks that encountered errors |
+| Output             | Description                                                  |
+| ------------------ | ------------------------------------------------------------ |
+| `dispatched-count` | Number of successfully dispatched events/tasks               |
+| `skipped-count`    | Number of skipped events/tasks (already completed or errors) |
+| `error-count`      | Number of events/tasks that encountered errors               |

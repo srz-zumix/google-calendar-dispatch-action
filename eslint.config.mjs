@@ -55,7 +55,8 @@ export default [
             'eslint.config.mjs',
             'jest.config.js',
             'rollup.config.ts'
-          ]
+          ],
+          maximumDefaultProjectFileMatchCount_THIS_WILL_SLOW_DOWN_LINTING: 20
         },
         tsconfigRootDir: import.meta.dirname
       }
@@ -80,6 +81,13 @@ export default [
       'no-shadow': 'off',
       'no-unused-vars': 'off',
       'prettier/prettier': 'error'
+    }
+  },
+  // Allow 'any' in test files for mocking
+  {
+    files: ['__tests__/**/*.ts'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off'
     }
   }
 ]

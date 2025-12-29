@@ -1,23 +1,53 @@
-name: The name of your action here
-description: Provide a description here
-author: Your name or organization here
+name: Google Calendar Dispatch Action
+description:
+  Retrieves incomplete events/tasks from Google Calendar and sends repository
+  dispatch for past-due items
+author: zumix
 
 # Add your action's branding here. This will appear on the GitHub Marketplace.
 branding:
-  icon: heart
-  color: red
+  icon: calendar
+  color: blue
 
 # Define your inputs here.
 inputs:
-  milliseconds:
-    description: Your input description here
+  github-token:
+    description: GitHub token for repository dispatch (requires repo scope)
     required: true
-    default: '1000'
+  time-range:
+    description: Time range in minutes to look back for events
+    required: false
+    default: '30'
+  calendar-ids:
+    description: Comma-separated list of Google Calendar IDs
+    required: false
+  task-list-ids:
+    description: Comma-separated list of Google Tasks list IDs
+    required: false
+  google-credentials:
+    description:
+      'Google credentials JSON. Falls back to GOOGLE_APPLICATION_CREDENTIALS if
+      not specified'
+    required: false
+  repository:
+    description:
+      'Target repository for dispatch (format: owner/repo). Defaults to current
+      repository'
+    required: false
+  event-type:
+    description: 'Default event type for repository dispatch'
+    required: false
+    default: 'calendar-dispatch'
 
 # Define your outputs here.
 outputs:
-  time:
-    description: Your output description here
+  dispatched-count:
+    description: Number of successfully dispatched events/tasks
+  skipped-count:
+    description:
+      Number of skipped events/tasks (already completed or not yet due)
+  error-count:
+    description: Number of events/tasks that encountered errors
 
 runs:
   using: node24
