@@ -24,12 +24,12 @@ jobs:
     steps:
       # Option 1: Using google-github-actions/auth (recommended)
       - name: Authenticate to Google Cloud
-        uses: google-github-actions/auth@v2
+        uses: google-github-actions/auth@v3
         with:
           credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Dispatch Calendar Events
         id: dispatch
@@ -53,7 +53,7 @@ jobs:
   #
   #   steps:
   #     - name: Checkout
-  #       uses: actions/checkout@v4
+  #       uses: actions/checkout@v6
   #
   #     - name: Dispatch Calendar Events
   #       uses: zumix/google-calendar-dispatch-action@v1

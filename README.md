@@ -29,7 +29,7 @@ jobs:
   dispatch:
     runs-on: ubuntu-latest
     steps:
-      - uses: google-github-actions/auth@v2
+      - uses: google-github-actions/auth@v3
         with:
           credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
 
@@ -69,7 +69,7 @@ This action supports two authentication methods:
 #### 1. Using `google-github-actions/auth` (Recommended)
 
 ```yaml
-- uses: google-github-actions/auth@v2
+- uses: google-github-actions/auth@v3
   with:
     credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
 
