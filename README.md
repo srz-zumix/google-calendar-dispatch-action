@@ -49,7 +49,7 @@ jobs:
 | `calendar-ids`       | ❌       | -                   | Comma-separated list of Google Calendar IDs                                              |
 | `task-list-ids`      | ❌       | -                   | Comma-separated list of Google Tasks list IDs                                            |
 | `google-credentials` | ❌       | -                   | Google credentials JSON. Falls back to `GOOGLE_APPLICATION_CREDENTIALS` if not specified |
-| `repository`         | ❌       | Current repo        | Target repository for dispatch (format: `owner/repo`)                                    |
+| `repository`         | ❌       | Current repository  | Target repository for dispatch (format: `owner/repo`)                                    |
 | `event-type`         | ❌       | `calendar-dispatch` | Default event type for repository dispatch                                               |
 
 ## Outputs
@@ -249,8 +249,6 @@ Description:
 }
 ````
 
-````
-
 ### Task-Based Reminders
 
 ```yaml
@@ -259,7 +257,7 @@ Description:
     github-token: ${{ secrets.GITHUB_TOKEN }}
     task-list-ids: 'your-task-list-id'
     event-type: 'task-reminder'
-````
+```
 
 ## Troubleshooting
 
