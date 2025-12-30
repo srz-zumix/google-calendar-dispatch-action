@@ -36,10 +36,12 @@ whose scheduled time has passed.
 - Target: Google Calendar Events API
 - **Incomplete criteria**: Event description does NOT contain the run URL marker
 - **Completion marker format**:
-  ```
+
+  ```text
   --- google-calendar-dispatch-action
   [GitHub Actions Run]: https://github.com/owner/repo/actions/runs/xxxxx
   ```
+
 - Run URL is appended to the end of the event description after dispatch
 
 ### Google Tasks

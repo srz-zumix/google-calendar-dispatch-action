@@ -44,7 +44,7 @@ jobs:
 
 | Input                | Required | Default             | Description                                                                              |
 | -------------------- | -------- | ------------------- | ---------------------------------------------------------------------------------------- |
-| `github-token`       | ✅       | -                   | GitHub token for repository dispatch (requires `repo` scope)                             |
+| `github-token`       | ✅       | -                   | GitHub token for repository dispatch (requires `repository` scope)                       |
 | `time-range`         | ❌       | `30`                | Time range in minutes to look back for events                                            |
 | `calendar-ids`       | ❌       | -                   | Comma-separated list of Google Calendar IDs                                              |
 | `task-list-ids`      | ❌       | -                   | Comma-separated list of Google Tasks list IDs                                            |
@@ -122,7 +122,7 @@ type is resolved in the following priority order:
 
 Calendar event title:
 
-```
+```text
 Deploy to production {event_type: deploy-production}
 ```
 
@@ -189,7 +189,7 @@ jobs:
 After successful dispatch, this action appends a marker to the event description
 or task notes:
 
-```
+```text
 --- google-calendar-dispatch-action
 [GitHub Actions Run]: https://github.com/owner/repo/actions/runs/123456789
 ```
@@ -201,7 +201,7 @@ This marker:
 
 ## Time Range Behavior
 
-```
+```text
           time_range                    buffer
     ◄─────────────────────►     ◄────────────────►
     │                       │                      │
@@ -232,13 +232,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Deploy
-        run: |
-          echo "Deploying version ${{ github.event.client_payload.custom.version }}"
+        env:
+          VERSION: ${{ github.event.client_payload.custom.version }}
+        run: echo "Deploying version $VERSION"
 ```
 
 Calendar event:
 
-````
+````text
 Title: Deploy v1.5.0 {event_type: scheduled-deploy}
 Description:
 ```json

@@ -40,7 +40,7 @@ contributions from everyone.
 
 ### Project Structure
 
-```
+```text
 src/
 ├── index.ts          # Entry point
 ├── main.ts           # Main logic
@@ -166,7 +166,7 @@ This project follows [Semantic Versioning](https://semver.org/):
 
 - **MAJOR**: Breaking changes
 - **MINOR**: New features (backward compatible)
-- **PATCH**: Bug fixes (backward compatible)
+- **PATCH**: Bugfixes (backward compatible)
 
 ## Testing Locally
 
