@@ -102,4 +102,7 @@ __tests__/runner/*
 *.code-workspace
 
 # Copilot
-tasks/
+/tasks/
+
+# gh-act-on
+gh-act-on*/
