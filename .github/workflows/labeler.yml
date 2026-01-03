@@ -3,6 +3,7 @@ on:
   pull_request:
   workflow_dispatch:
     inputs:
+      # checkov:skip=CKV_GHA_7: Input required for manual trigger
       pr-number:
         description: 'The pull request number(s)'
         required: true
