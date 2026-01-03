@@ -60,7 +60,8 @@ export default [
             '__tests__/*.ts',
             'eslint.config.mjs',
             'jest.config.js',
-            'rollup.config.ts'
+            'rollup.config.ts',
+            'rollup/*.js'
           ],
           maximumDefaultProjectFileMatchCount_THIS_WILL_SLOW_DOWN_LINTING: 20
         },

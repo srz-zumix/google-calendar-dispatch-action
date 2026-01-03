@@ -5,6 +5,8 @@ import nodeResolve from '@rollup/plugin-node-resolve'
 import typescript from '@rollup/plugin-typescript'
 import json from '@rollup/plugin-json'
 
+import normalizeNodeModulesEol from './rollup/normalize-node-modules-eol.js'
+
 const config = {
   input: 'src/index.ts',
   output: {
@@ -15,6 +17,7 @@ const config = {
     inlineDynamicImports: true
   },
   plugins: [
+    normalizeNodeModulesEol(),
     typescript(),
     nodeResolve({
       preferBuiltins: true,
