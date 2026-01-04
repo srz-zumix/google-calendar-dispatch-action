@@ -19,22 +19,22 @@ contributions from everyone.
 
 1. Fork and clone the repository:
 
-   ```bash
-   git clone https://github.com/your-username/google-calendar-dispatch-action.git
-   cd google-calendar-dispatch-action
-   ```
+    ```bash
+    git clone https://github.com/your-username/google-calendar-dispatch-action.git
+    cd google-calendar-dispatch-action
+    ```
 
 2. Install dependencies:
 
-   ```bash
-   npm install
-   ```
+    ```bash
+    npm install
+    ```
 
 3. Create a branch for your changes:
 
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
+    ```bash
+    git checkout -b feature/your-feature-name
+    ```
 
 ## Development Workflow
 
@@ -94,8 +94,7 @@ Run `npm run format:write` before committing to ensure consistent formatting.
 2. **Types**: Use explicit types, avoid `any`
 3. **JSDoc**: Document public functions with JSDoc comments
 4. **Error Handling**: Use try-catch and handle errors gracefully
-5. **Logging**: Use `@actions/core` for logging (`core.info`, `core.warning`,
-   `core.error`)
+5. **Logging**: Use `@actions/core` for logging (`core.info`, `core.warning`, `core.error`)
 
 ### Writing Tests
 
@@ -140,16 +139,16 @@ Use clear, descriptive commit messages:
 1. **Update tests**: Add or update tests for your changes
 2. **Run checks**: Ensure all checks pass:
 
-   ```bash
-   npm run all
-   ```
+    ```bash
+    npm run all
+    ```
 
 3. **Update documentation**: Update README.md if adding features
 4. **Bundle**: Run `npm run bundle` to update `dist/`
 5. **Create PR**: Submit a pull request with:
-   - Clear title and description
-   - Link to related issues
-   - Summary of changes
+    - Clear title and description
+    - Link to related issues
+    - Summary of changes
 
 ### PR Checklist
 
@@ -174,17 +173,17 @@ This project follows [Semantic Versioning](https://semver.org/):
 
 1. Copy `.env.example` to `.env`:
 
-   ```bash
-   cp .env.example .env
-   ```
+    ```bash
+    cp .env.example .env
+    ```
 
 2. Fill in the required values in `.env`
 
 3. Run locally:
 
-   ```bash
-   npx @github/local-action run .
-   ```
+    ```bash
+    npx @github/local-action run .
+    ```
 
 ### Manual Testing
 

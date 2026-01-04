@@ -202,7 +202,7 @@ This marker:
 past                      now                    future
     │                       │
     └─── Events retrieved ──┘
-         (dispatched if start_time < now)
+        (dispatched if start_time < now)
 ```
 
 - **Past range**: Controlled by `time-range` input (default: 30 minutes)

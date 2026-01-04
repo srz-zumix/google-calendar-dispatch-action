@@ -83,8 +83,7 @@ whose scheduled time has passed.
 Event type for repository dispatch is determined in the following priority order:
 
 1. **Title**: Extract from event/task title using format `{event_type: xxx}`
-2. **Description**: Extract from description/notes using format
-   `{event_type: xxx}`
+2. **Description**: Extract from description/notes using format `{event_type: xxx}`
 3. **Default**: Use `event_type` input parameter
 
 ### Format
