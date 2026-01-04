@@ -91,9 +91,9 @@ This action supports two authentication methods:
 2. Create a new project or select an existing one
 3. Enable the **Google Calendar API** and **Google Tasks API**
 4. Create a Service Account:
-   - Go to **IAM & Admin** > **Service Accounts**
-   - Click **Create Service Account**
-   - Download the JSON key file
+    - Go to **IAM & Admin** > **Service Accounts**
+    - Click **Create Service Account**
+    - Download the JSON key file
 5. Share your calendar with the service account email
 6. Store the JSON key as a GitHub secret
 
