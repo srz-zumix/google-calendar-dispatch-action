@@ -8,9 +8,9 @@ name: Handle Calendar Events
 on:
   repository_dispatch:
     types:
-      - calendar-dispatch      # Default event type
-      - scheduled-deploy       # Custom event type example
-      - reminder               # Another custom type
+      - calendar-dispatch # Default event type
+      - scheduled-deploy # Custom event type example
+      - reminder # Another custom type
 
 jobs:
   process:
