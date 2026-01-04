@@ -2,3 +2,19 @@
 
 dist/** -diff linguist-generated=true
 dist/index.js.map filter=lfs diff=lfs merge=lfs -text
+
+# export settings
+src/** export-ignore
+.devcontainer/** export-ignore
+.github/** export-ignore
+examples/** export-ignore
+rollup/** export-ignore
+specs/** export-ignore
+badges export-ignore
+*.json export-ignore
+*.md export-ignore
+.* export-ignore
+*.yaml export-ignore
+*.mjs export-ignore
+*.ts export-ignore
+*.config.js export-ignore
