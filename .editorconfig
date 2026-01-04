@@ -40,7 +40,7 @@ trim_trailing_whitespace = false
 max_line_length = 200
 
 [{README,CONTRIBUTING}.md]
-max_line_length = 200
+max_line_length = 150
 
 [Dockerfile]
 indent_size = 2

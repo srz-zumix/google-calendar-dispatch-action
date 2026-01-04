@@ -8,8 +8,8 @@ whose scheduled time has passed.
 
 ## Trigger
 
-- Designed as a generic GitHub Action that can be invoked from any workflow
-  event (cron, workflow_dispatch, push, etc.)
+- Designed as a generic GitHub Action that can be invoked from any workflow event
+  (cron, workflow_dispatch, push, etc.)
 - The action does not depend on any specific trigger type
 
 ## Time Range
@@ -17,17 +17,13 @@ whose scheduled time has passed.
 ### Event Retrieval Range
 
 - **Past range**: Configurable via `time_range` parameter (in minutes)
-- **Future buffer**: Internal fixed value (~10 minutes) to handle processing
-  delays
-- **Retrieval window**: `(current_time - time_range)` to
-  `(current_time + buffer)`
+- **Future buffer**: Internal fixed value (~10 minutes) to handle processing delays
+- **Retrieval window**: `(current_time - time_range)` to `(current_time + buffer)`
 
 ### Dispatch Target Criteria
 
-- Only events/tasks where `start_time < current_time` at the moment of
-  evaluation are dispatched
-- This ensures the action only processes events that have actually passed their
-  start time
+- Only events/tasks where `start_time < current_time` at the moment of evaluation are dispatched
+- This ensures the action only processes events that have actually passed their start time
 
 ## Target Sources
 
@@ -76,8 +72,7 @@ whose scheduled time has passed.
 
 1. If `google-credentials` input is provided, use it directly
 2. Otherwise, use `GOOGLE_APPLICATION_CREDENTIALS` environment variable
-3. Designed to work with
-   [google-github-actions/auth](https://github.com/google-github-actions/auth)
+3. Designed to work with [google-github-actions/auth](https://github.com/google-github-actions/auth)
 
 ### GitHub API
 
@@ -85,8 +80,7 @@ whose scheduled time has passed.
 
 ## Event Type Resolution
 
-Event type for repository dispatch is determined in the following priority
-order:
+Event type for repository dispatch is determined in the following priority order:
 
 1. **Title**: Extract from event/task title using format `{event_type: xxx}`
 2. **Description**: Extract from description/notes using format
@@ -148,18 +142,17 @@ JSON data extracted from description/notes using code block format:
 2. **Retrieve events** from specified calendars within the time range
 3. **Retrieve tasks** from specified task lists within the time range
 4. **Filter** incomplete events/tasks:
-   - Events: description does not contain run URL marker
-   - Tasks: status is not completed
+    - Events: description does not contain run URL marker
+    - Tasks: status is not completed
 5. **For each** filtered event/task where `start_time < current_time`: a.
-   Extract event type from title/description or use default b. Extract custom
-   JSON payload from description c. Send repository dispatch d. Append run URL
-   to event description / task notes
+  Extract event type from title/description or use default b. Extract custom
+  JSON payload from description c. Send repository dispatch d. Append run URL
+  to event description / task notes
 6. **Report** summary of processed items
 
 ## Completion Marker Format
 
-After successful dispatch, the following is appended to the event description or
-task notes:
+After successful dispatch, the following is appended to the event description or task notes:
 
 ```text
 --- google-calendar-dispatch-action

@@ -1,11 +1,7 @@
 # Google Calendar Dispatch Action
 
-[![GitHub Super-Linter](https://github.com/zumix/google-calendar-dispatch-action/actions/workflows/linter.yml/badge.svg)](https://github.com/super-linter/super-linter)
-[![CI](https://github.com/zumix/google-calendar-dispatch-action/actions/workflows/ci.yml/badge.svg)](https://github.com/zumix/google-calendar-dispatch-action/actions/workflows/ci.yml)
-
-A GitHub Action that retrieves incomplete events/tasks from Google Calendar
-around the current time, and sends a repository dispatch for each event/task
-whose scheduled time has passed.
+A GitHub Action that retrieves incomplete events/tasks from Google Calendar around the current time,
+and sends a repository dispatch for each event/task whose scheduled time has passed.
 
 ## Features
 
@@ -103,16 +99,15 @@ This action supports two authentication methods:
 
 ### GitHub Token
 
-The `github-token` requires the `repo` scope for repository dispatch. The
-default `GITHUB_TOKEN` works for dispatching to the same repository.
+The `github-token` requires the `repo` scope for repository dispatch.
+The default `GITHUB_TOKEN` works for dispatching to the same repository.
 
-For cross-repository dispatch, use a Personal Access Token (PAT) with `repo`
-scope.
+For cross-repository dispatch, use a Personal Access Token (PAT) with `repo` scope.
 
 ## Event Type Configuration
 
-You can specify a custom event type for each calendar event or task. The event
-type is resolved in the following priority order:
+You can specify a custom event type for each calendar event or task.
+The event type is resolved in the following priority order:
 
 1. **Title**: `{event_type: my-event}` in the event/task title
 2. **Description**: `{event_type: my-event}` in the description/notes
@@ -130,8 +125,7 @@ This will trigger a `repository_dispatch` with event type `deploy-production`.
 
 ## Custom Payload
 
-You can include custom JSON data in the dispatch payload by adding a JSON code
-block to the event description or task notes:
+You can include custom JSON data in the dispatch payload by adding a JSON code block to the event description or task notes:
 
 ````markdown
 Meeting details here...
@@ -186,8 +180,7 @@ jobs:
 
 ## Completion Marker
 
-After successful dispatch, this action appends a marker to the event description
-or task notes:
+After successful dispatch, this action appends a marker to the event description or task notes:
 
 ```text
 --- google-calendar-dispatch-action
@@ -281,8 +274,7 @@ Description:
 
 ## Contributing
 
-Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for
-guidelines.
+Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ### Development
 
