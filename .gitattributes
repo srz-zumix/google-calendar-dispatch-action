@@ -10,10 +10,9 @@ src/** export-ignore
 examples/** export-ignore
 rollup/** export-ignore
 specs/** export-ignore
-badges export-ignore
+.* export-ignore
 *.json export-ignore
 *.md export-ignore
-.* export-ignore
 *.yaml export-ignore
 *.mjs export-ignore
 *.ts export-ignore
