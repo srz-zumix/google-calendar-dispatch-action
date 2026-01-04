@@ -1,0 +1,53 @@
+# Example: Handle Dispatched Events
+#
+# This workflow handles events dispatched by the Google Calendar Dispatch Action.
+# Copy this file to .github/workflows/ and configure as needed.
+
+name: Handle Calendar Events
+
+on:
+  repository_dispatch:
+    types:
+      - calendar-dispatch # Default event type
+      - scheduled-deploy # Custom event type example
+      - reminder # Another custom type
+
+jobs:
+  process:
+    name: Process Calendar Event
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Show Event Info
+        run: |
+          echo "Event Type: ${{ github.event.action }}"
+          echo "Source Type: ${{ github.event.client_payload.source_type }}"
+          echo "---"
+          echo "Event/Task Data:"
+          echo '${{ toJson(github.event.client_payload.event) }}'
+          echo "---"
+          echo "Custom Payload:"
+          echo '${{ toJson(github.event.client_payload.custom) }}'
+
+      # Example: Route based on event type
+      - name: Handle Deploy Event
+        if: github.event.action == 'scheduled-deploy'
+        run: |
+          echo "Deploying version: ${{ github.event.client_payload.custom.version }}"
+          echo "Environment: ${{ github.event.client_payload.custom.environment }}"
+          # Add your deployment logic here
+
+      - name: Handle Reminder
+        if: github.event.action == 'reminder'
+        run: |
+          echo "Reminder: ${{ github.event.client_payload.event.summary }}"
+          # Add your reminder logic here
+
+      - name: Handle Default
+        if: github.event.action == 'calendar-dispatch'
+        run: |
+          echo "Processing calendar event: ${{ github.event.client_payload.event.summary }}"
+          # Add your default processing logic here

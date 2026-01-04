@@ -18,7 +18,14 @@ const compat = new FlatCompat({
 
 export default [
   {
-    ignores: ['**/coverage', '**/dist', '**/linter', '**/node_modules']
+    ignores: [
+      '**/coverage/**',
+      '**/dist/**',
+      '**/linter/**',
+      '**/node_modules/**',
+      '**/rollup/**',
+      'gh-act-on*/**'
+    ]
   },
   ...compat.extends(
     'eslint:recommended',
@@ -54,8 +61,10 @@ export default [
             '__tests__/*.ts',
             'eslint.config.mjs',
             'jest.config.js',
-            'rollup.config.ts'
-          ]
+            'rollup.config.ts',
+            'rollup/*.js'
+          ],
+          maximumDefaultProjectFileMatchCount_THIS_WILL_SLOW_DOWN_LINTING: 20
         },
         tsconfigRootDir: import.meta.dirname
       }
@@ -80,6 +89,13 @@ export default [
       'no-shadow': 'off',
       'no-unused-vars': 'off',
       'prettier/prettier': 'error'
+    }
+  },
+  // Allow 'any' in test files for mocking
+  {
+    files: ['__tests__/**/*.ts'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off'
     }
   }
 ]

@@ -1,17 +1,17 @@
 {
-  "name": "typescript-action",
-  "description": "GitHub Actions TypeScript template",
+  "name": "google-calendar-dispatch-action",
+  "description": "GitHub Action to dispatch Google Calendar events",
   "version": "0.0.0",
   "author": "",
   "type": "module",
   "private": true,
-  "homepage": "https://github.com/actions/typescript-action",
+  "homepage": "https://github.com/srz-zumix/google-calendar-dispatch-action",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/typescript-action.git"
+    "url": "git+https://github.com/srz-zumix/google-calendar-dispatch-action.git"
   },
   "bugs": {
-    "url": "https://github.com/actions/typescript-action/issues"
+    "url": "https://github.com/srz-zumix/google-calendar-dispatch-action/issues"
   },
   "keywords": [
     "actions"
@@ -23,12 +23,12 @@
     "node": ">=24.0.0"
   },
   "scripts": {
-    "bundle": "npm run format:write && npm run package",
+    "bundle": "npm run format:write && NODE_OPTIONS=--max-old-space-size=4096 npm run package",
     "ci-test": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 npx jest",
     "coverage": "npx make-coverage-badge --output-path ./badges/coverage.svg",
     "format:write": "npx prettier --write .",
     "format:check": "npx prettier --check .",
-    "lint": "npx eslint .",
+    "lint": "NODE_OPTIONS=--max-old-space-size=4096 npx eslint --cache src __tests__ __fixtures__ eslint.config.mjs rollup.config.ts",
     "local-action": "npx @github/local-action . src/main.ts .env",
     "package": "npx rimraf ./dist && npx rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
     "package:watch": "npm run package -- --watch",
@@ -37,13 +37,16 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.11.1"
+    "@actions/core": "^2.0.1",
+    "@actions/github": "^6.0.1",
+    "googleapis": "^169.0.0"
   },
   "devDependencies": {
     "@eslint/compat": "^1.4.0",
     "@github/local-action": "^6.0.2",
     "@jest/globals": "^30.2.0",
     "@rollup/plugin-commonjs": "^29.0.0",
+    "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-typescript": "^12.3.0",
     "@types/jest": "^30.0.0",

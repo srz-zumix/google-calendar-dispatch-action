@@ -100,3 +100,9 @@ __tests__/runner/*
 # IDE files
 .idea
 *.code-workspace
+
+# Copilot
+/tasks/
+
+# gh-act-on
+gh-act-on*/

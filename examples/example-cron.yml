@@ -1,0 +1,65 @@
+# Example: Scheduled Calendar Dispatch
+#
+# This workflow runs on a schedule and dispatches events from Google Calendar.
+# Copy this file to .github/workflows/ and configure as needed.
+
+name: Calendar Dispatch
+
+on:
+  # Run every 15 minutes
+  schedule:
+    - cron: '*/15 * * * *'
+
+  # Allow manual trigger for testing
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dispatch:
+    name: Dispatch Calendar Events
+    runs-on: ubuntu-latest
+
+    steps:
+      # Option 1: Using google-github-actions/auth (recommended)
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v3
+        with:
+          credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
+
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Dispatch Calendar Events
+        id: dispatch
+        uses: zumix/google-calendar-dispatch-action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          calendar-ids: 'primary'
+          time-range: '30'
+          event-type: 'calendar-dispatch'
+
+      - name: Summary
+        run: |
+          echo "Dispatched: ${{ steps.dispatch.outputs.dispatched-count }}"
+          echo "Skipped: ${{ steps.dispatch.outputs.skipped-count }}"
+          echo "Errors: ${{ steps.dispatch.outputs.error-count }}"
+
+  # Alternative: Using direct credentials input
+  # dispatch-alt:
+  #   name: Dispatch with Direct Credentials
+  #   runs-on: ubuntu-latest
+  #
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v6
+  #
+  #     - name: Dispatch Calendar Events
+  #       uses: zumix/google-calendar-dispatch-action@v1
+  #       with:
+  #         github-token: ${{ secrets.GITHUB_TOKEN }}
+  #         google-credentials: ${{ secrets.GOOGLE_CREDENTIALS }}
+  #         calendar-ids: 'primary,work@group.calendar.google.com'
+  #         task-list-ids: 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTA'
+  #         time-range: '60'
