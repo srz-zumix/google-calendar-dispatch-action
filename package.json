@@ -39,7 +39,7 @@
   "dependencies": {
     "@actions/core": "^2.0.1",
     "@actions/github": "^6.0.1",
-    "googleapis": "^169.0.0"
+    "googleapis": "^171.4.0"
   },
   "devDependencies": {
     "@eslint/compat": "^2.0.0",
